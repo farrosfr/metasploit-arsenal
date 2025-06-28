@@ -7,9 +7,9 @@ Repositori ini adalah koleksi pribadi skrip, modul kustom, *cheatsheets*, dan *w
 <br>
 
 <details>
-<summary>⚠️ **Disclaimer Penting**</summary>
+<summary>⚠️ Disclaimer Penting</summary>
 <br>
-Semua informasi, skrip, dan teknik dalam repositori ini ditujukan **HANYA UNTUK TUJUAN PENDIDIKAN DAN RISET KEAMANAN SIBER SECARA ETIS**. Penggunaan alat dan teknik ini untuk menyerang target yang tidak Anda miliki izin eksplisitnya adalah ilegal. Penulis (FarrosFR) tidak bertanggung jawab atas penyalahgunaan informasi di dalam repositori ini. Gunakan dengan risiko Anda sendiri dan selalu bertindak secara profesional dan etis.
+Semua informasi, skrip, dan teknik dalam repositori ini ditujukan HANYA UNTUK TUJUAN PENDIDIKAN DAN RISET KEAMANAN SIBER SECARA ETIS. Penggunaan alat dan teknik ini untuk menyerang target yang tidak Anda miliki izin eksplisitnya adalah ilegal. Penulis (FarrosFR) tidak bertanggung jawab atas penyalahgunaan informasi di dalam repositori ini. Gunakan dengan risiko Anda sendiri dan selalu bertindak secara profesional dan etis.
 </details>
 
 ---
