@@ -96,7 +96,7 @@ Walkthrough ini mencakup:
 1.  **Clone Repositori**
 
     ```bash
-    git clone [https://github.com/FarrosFR/metasploit-arsenal.git](https://github.com/FarrosFR/metasploit-arsenal.git)
+    git clone https://github.com/farrosfr/metasploit-arsenal.git
     cd metasploit-arsenal
     ```
 
