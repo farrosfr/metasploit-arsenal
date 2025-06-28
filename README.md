@@ -37,3 +37,26 @@ Repositori ini berfungsi sebagai:
 * **Dokumentasi Walkthrough**: Catatan langkah-demi-langkah dari skenario pentesting nyata atau dari platform lab seperti Hack The Box & TryHackMe.
 
 ## Struktur Direktori
+
+├── custom_modules/     # Untuk modul Metasploit kustom Anda
+├── resource_scripts/   # Skrip .rc untuk otomatisasi msfconsole
+├── cheatsheets/        # Referensi cepat (payloads, commands, dll)
+└── walkthroughs/       # Panduan langkah-demi-langkah untuk skenario tertentu
+
+## Contoh Use Case & Implementasi
+
+Berikut adalah beberapa contoh praktis yang ada di repositori ini.
+
+### Resource Script: Listener Otomatis
+
+Seringkali kita perlu menyiapkan *listener* `multi/handler` dengan cepat. Skrip `.rc` ini mengotomatiskannya.
+
+**File**: [`resource_scripts/multi_handler_listener.rc`](resource_scripts/multi_handler_listener.rc)
+
+**Implementasi**:
+Jalankan dari terminal Anda (bukan di dalam msfconsole):
+```bash
+msfconsole -r resource_scripts/multi_handler_listener.rc
+```
+Ini akan langsung memulai listener dengan konfigurasi yang telah ditentukan di dalam file.
+
