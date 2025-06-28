@@ -7,9 +7,9 @@ Repositori ini adalah koleksi pribadi skrip, modul kustom, *cheatsheets*, dan *w
 <br>
 
 <details>
-<summary>⚠️ **Disclaimer Penting**</summary>
+<summary>⚠️ *Disclaimer Penting*</summary>
 <br>
-Semua informasi, skrip, dan teknik dalam repositori ini ditujukan **HANYA UNTUK TUJUAN PENDIDIKAN DAN RISET KEAMANAN SIBER SECARA ETIS**. Penggunaan alat dan teknik ini untuk menyerang target yang tidak Anda miliki izin eksplisitnya adalah ilegal. Penulis (FarrosFR) tidak bertanggung jawab atas penyalahgunaan informasi di dalam repositori ini. Gunakan dengan risiko Anda sendiri dan selalu bertindak secara profesional dan etis.
+Semua informasi, skrip, dan teknik dalam repositori ini ditujukan *HANYA UNTUK TUJUAN PENDIDIKAN DAN RISET KEAMANAN SIBER SECARA ETIS*. Penggunaan alat dan teknik ini untuk menyerang target yang tidak Anda miliki izin eksplisitnya adalah ilegal. Penulis (FarrosFR) tidak bertanggung jawab atas penyalahgunaan informasi di dalam repositori ini. Gunakan dengan risiko Anda sendiri dan selalu bertindak secara profesional dan etis.
 </details>
 
 ---
@@ -115,60 +115,5 @@ Saat ini, repositori ini dikelola untuk keperluan pribadi. Namun, jika Anda mene
 ## Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](https://www.google.com/search?q=LICENSE).
-
-```
-
----
-
-#### `.gitignore`
-
-File ini penting agar file-file sementara atau log dari Metasploit tidak ikut ter-upload ke GitHub.
-
-```
-
-# Metasploit Framework files
-
-.msf4/
-.msf3/
-logs/
-loot/
-sessions/
-
-# OS generated files
-
-.DS\_Store
-Thumbs.db
-
-```
-
----
-
-#### `LICENSE`
-
-Menggunakan lisensi MIT adalah standar yang baik. Lisensi ini sangat permisif.
-
-```
-
-MIT License
-
-Copyright (c) 2025 FarrosFR
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 
 ```
