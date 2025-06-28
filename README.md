@@ -115,5 +115,3 @@ Saat ini, repositori ini dikelola untuk keperluan pribadi. Namun, jika Anda mene
 ## Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](https://www.google.com/search?q=LICENSE).
-
-```
