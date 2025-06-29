@@ -1,1 +1,8 @@
+# Metasploit Framework cache and logs
+.msf*
+/logs/
+/db/
 
+# Operating System generated files
+.DS_Store
+Thumbs.db
