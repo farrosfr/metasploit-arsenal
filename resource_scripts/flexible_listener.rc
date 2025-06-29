@@ -1,0 +1,14 @@
+# Metasploit Resource Script: Flexible Listener
+#
+# This script starts a multi/handler using variables (PAYLOAD, LHOST, LPORT)
+# that are expected to be set *before* this script is executed.
+# This makes it a reusable template for any listener.
+
+# Use the generic handler module
+use exploit/multi/handler
+
+# Run the listener as a background job using the pre-set variables.
+exploit -j
+
+# Display active jobs to confirm the listener is running.
+jobs
