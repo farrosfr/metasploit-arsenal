@@ -2,116 +2,116 @@
 
 > "May the eyes of cowards never sleep." - Khalid bin Walid
 
-Repositori ini adalah koleksi pribadi skrip, modul kustom, *cheatsheets*, dan *walkthrough* terkait Metasploit Framework. Dikelola oleh **FarrosFR**, repositori ini bertujuan untuk menjadi gudang pengetahuan praktis dalam dunia *offensive security* dan *penetration testing*.
+This repository is a personal collection of scripts, custom modules, cheatsheets, and walkthroughs related to the Metasploit Framework. Maintained by **FarrosFR**, this repository aims to be a practical knowledge base for the world of offensive security and penetration testing.
 
 <br>
 
 <details>
-<summary>⚠️ Disclaimer Penting</summary>
+<summary>⚠️ Important Disclaimer</summary>
 <br>
-Semua informasi, skrip, dan teknik dalam repositori ini ditujukan HANYA UNTUK TUJUAN PENDIDIKAN DAN RISET KEAMANAN SIBER SECARA ETIS. Penggunaan alat dan teknik ini untuk menyerang target yang tidak Anda miliki izin eksplisitnya adalah ilegal. Penulis (FarrosFR) tidak bertanggung jawab atas penyalahgunaan informasi di dalam repositori ini. Gunakan dengan risiko Anda sendiri dan selalu bertindak secara profesional dan etis.
+All information, scripts, and techniques in this repository are intended ONLY FOR ETHICAL CYBERSECURITY EDUCATION AND RESEARCH PURPOSES. Using these tools and techniques to attack targets for which you do not have explicit permission is illegal. The author (FarrosFR) is not responsible for any misuse of the information within this repository. Use at your own risk and always act professionally and ethically.
 </details>
 
 ---
 
-##  Daftar Isi
+## Table of Contents
 
-1.  [Tentang Repositori Ini](#tentang-repositori-ini)
-2.  [Struktur Direktori](#struktur-direktori)
-3.  [Contoh Use Case & Implementasi](#contoh-use-case--implementasi)
-    * [Resource Script: Listener Otomatis](#resource-script-listener-otomatis)
+1.  [About This Repository](#about-this-repository)
+2.  [Directory Structure](#directory-structure)
+3.  [Use Cases & Implementation Examples](#use-cases--implementation-examples)
+    * [Resource Script: Automated Listener](#resource-script-automated-listener)
     * [Cheatsheet: Payloads](#cheatsheet-payloads)
-    * [Walkthrough: Eksploitasi MS17-010 (EternalBlue)](#walkthrough-eksploitasi-ms17-010-eternalblue)
-4.  [Cara Menggunakan Repositori Ini](#cara-menggunakan-repositori-ini)
-5.  [Kontribusi](#kontribusi)
-6.  [Lisensi](#lisensi)
+    * [Walkthrough: MS17-010 (EternalBlue) Exploitation](#walkthrough-ms17-010-eternalblue-exploitation)
+4.  [How to Use This Repository](#how-to-use-this-repository)
+5.  [Contributing](#contributing)
+6.  [License](#license)
 
 ---
 
-## Tentang Repositori Ini
+## About This Repository
 
-Repositori ini berfungsi sebagai:
-* **Tempat Penyimpanan Modul Kustom**: Menyimpan modul `exploit`, `auxiliary`, atau `post` yang dibuat atau dimodifikasi.
-* **Koleksi Resource Scripts (.rc)**: Otomatisasi tugas-tugas berulang di `msfconsole`.
-* **Pusat Cheatsheets**: Kumpulan cepat perintah, payloads, dan teknik penting.
-* **Dokumentasi Walkthrough**: Catatan langkah-demi-langkah dari skenario pentesting nyata atau dari platform lab seperti Hack The Box & TryHackMe.
+This repository serves as:
+* **A Storage for Custom Modules**: To store custom `exploit`, `auxiliary`, or `post` modules that have been created or modified.
+* **A Collection of Resource Scripts (.rc)**: To automate repetitive tasks in `msfconsole`.
+* **A Hub for Cheatsheets**: A quick reference for essential commands, payloads, and techniques.
+* **A Documentation of Walkthroughs**: Step-by-step notes from real-world pentesting scenarios or lab platforms like Hack The Box & TryHackMe.
 
-## Struktur Direktori
+## Directory Structure
 
 ```
 
 /
-├── custom\_modules/     \# Untuk modul Metasploit kustom Anda
-├── resource\_scripts/   \# Skrip .rc untuk otomatisasi msfconsole
-├── cheatsheets/        \# Referensi cepat (payloads, commands, dll)
-└── walkthroughs/       \# Panduan langkah-demi-langkah untuk skenario tertentu
+├── custom\_modules/     \# For your custom Metasploit modules
+├── resource\_scripts/   \# .rc scripts for msfconsole automation
+├── cheatsheets/        \# Quick references (payloads, commands, etc.)
+└── walkthroughs/       \# Step-by-step guides for specific scenarios
 
 ````
 
-## Contoh Use Case & Implementasi
+## Use Cases & Implementation Examples
 
-Berikut adalah beberapa contoh praktis yang ada di repositori ini.
+Here are some practical examples found in this repository.
 
-### Resource Script: Listener Otomatis
+### Resource Script: Automated Listener
 
-Seringkali kita perlu menyiapkan *listener* `multi/handler` dengan cepat. Skrip `.rc` ini mengotomatiskannya.
+We often need to quickly set up a `multi/handler` listener. This `.rc` script automates it.
 
 **File**: [`resource_scripts/multi_handler_listener.rc`](resource_scripts/multi_handler_listener.rc)
 
-**Implementasi**:
-Jalankan dari terminal Anda (bukan di dalam msfconsole):
+**Implementation**:
+Run from your terminal (not inside msfconsole):
 ```bash
 msfconsole -r resource_scripts/multi_handler_listener.rc
 ````
 
-Ini akan langsung memulai listener dengan konfigurasi yang telah ditentukan di dalam file.
+This will immediately start a listener with the predefined configuration from the file.
 
 ### Cheatsheet: Payloads
 
-Referensi cepat untuk berbagai jenis payload yang umum digunakan di Metasploit, dikategorikan berdasarkan sistem operasi target.
+A quick reference for various common payloads used in Metasploit, categorized by the target operating system.
 
 **File**: [`cheatsheets/payload_cheatsheet.md`](https://www.google.com/search?q=cheatsheets/payload_cheatsheet.md)
 
-**Contoh Cuplikan**:
-| Platform | Jenis Payload | Contoh |
-| :--- | :--- | :--- |
-| Windows | Staged Reverse TCP (Meterpreter) | `windows/meterpreter/reverse_tcp` |
-| Linux | Stageless Reverse TCP (Shell) | `linux/x64/shell_reverse_tcp` |
+**Example Snippet**:
+| Platform | Payload Type                      | Example                             |
+| :---     | :---                              | :---                                |
+| Windows  | Staged Reverse TCP (Meterpreter)  | `windows/meterpreter/reverse_tcp`   |
+| Linux    | Stageless Reverse TCP (Shell)     | `linux/x64/shell_reverse_tcp`       |
 
-### Walkthrough: Eksploitasi MS17-010 (EternalBlue)
+### Walkthrough: MS17-010 (EternalBlue) Exploitation
 
-Panduan langkah-demi-langkah untuk melakukan eksploitasi pada kerentanan MS17-010, salah satu kerentanan paling terkenal yang menargetkan protokol SMB di Windows.
+A step-by-step guide to exploiting the MS17-010 vulnerability, one of the most famous vulnerabilities targeting the SMB protocol in Windows.
 
 **File**: [`walkthroughs/case_ms17-010_eternalblue.md`](https://www.google.com/search?q=walkthroughs/case_ms17-010_eternalblue.md)
 
-Walkthrough ini mencakup:
+This walkthrough covers:
 
-1.  Identifikasi target.
-2.  Pemilihan modul exploit di Metasploit.
-3.  Konfigurasi `RHOSTS`, `LHOST`, dan `PAYLOAD`.
-4.  Eksekusi exploit dan mendapatkan sesi Meterpreter.
+1.  Target identification.
+2.  Selecting the exploit module in Metasploit.
+3.  Configuring `RHOSTS`, `LHOST`, and `PAYLOAD`.
+4.  Executing the exploit and gaining a Meterpreter session.
 
-## Cara Menggunakan Repositori Ini
+## How to Use This Repository
 
-1.  **Clone Repositori**
+1.  **Clone the Repository**
 
     ```bash
-    git clone https://github.com/farrosfr/metasploit-arsenal.git
+    git clone [https://github.com/farrosfr/metasploit-arsenal.git](https://github.com/farrosfr/metasploit-arsenal.git)
     cd metasploit-arsenal
     ```
 
-2.  **Menambahkan Modul Kustom**
-    Salin modul `.rb` Anda ke direktori yang sesuai di dalam `custom_modules/`. Di dalam `msfconsole`, gunakan perintah `loadpath` untuk memuatnya:
+2.  **Adding Custom Modules**
+    Copy your `.rb` module to the appropriate directory inside `custom_modules/`. Inside `msfconsole`, use the `loadpath` command to load it:
 
     ```
     msf > loadpath /path/to/your/repo/metasploit-arsenal/custom_modules
     msf > reload_all
     ```
 
-## Kontribusi
+## Contributing
 
-Saat ini, repositori ini dikelola untuk keperluan pribadi. Namun, jika Anda menemukan kesalahan atau memiliki saran, silakan buka *Issue*.
+Currently, this repository is maintained for personal use. However, if you find any errors or have suggestions, please open an *Issue*.
 
-## Lisensi
+## License
 
-Proyek ini dilisensikan di bawah [MIT License](https://www.google.com/search?q=LICENSE).
+This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
